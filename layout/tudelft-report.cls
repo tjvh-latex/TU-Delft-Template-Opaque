@@ -6,6 +6,9 @@
 % template by TU Delft (https://www.tudelft.nl/huisstijl/downloads/).
 %
 % Rewritten again by Thomas van Haarst (github.com/tjvh-latex and github.com/TJVH0304).
+% My edits provide extra functionality (such as minipages and listings), and fix loads of 
+% errors (0 errors is easily possible now), resulting in faster compilation. Subfiles are also 
+% supported for fast compilation.
 %
 % This template is available under CC BY-NC 4.0. For more information,
 % see https://creativecommons.org/licenses/by-nc/4.0/. No attribution
