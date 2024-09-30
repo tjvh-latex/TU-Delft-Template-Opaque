@@ -1,0 +1,159 @@
+This file lists some standards for various elements of the report.
+
+
+==================================================================================
+=================================== 1.) TABLES ===================================
+==================================================================================
+
+Most tables should be very simple but not stale. The top row features the labels for the columns (as expected) in bold (done by highlighting the text and pressing CTRL+B or by using \textbf{}). Alignment is on the left side, lines all around. The top row is also colored in gray, HTML code C0C0C0 (\rowcolor[HTML]{C0C0C0}). Captions are put above the table in accordance with technical writing, do not forget a period at the end. A small template can be seen below.
+
+\begin{table}
+    \centering
+    \caption{Put the caption here.}
+    \begin{tabular}{|l|l|l|}
+    \hline
+        \rowcolor[HTML]{C0C0C0} \textbf{Label 1} & \textbf{Label 2} & \textbf{Label 3} \\ \hline
+         Value 1 & Value 2 & Value 3 \\ \hline 
+    \end{tabular}
+    \label{tab:table template}
+\end{table}
+
+Also please do not forget the \centering, and if the table is compiled in the wrong location in the pdf, add [H] after \begin{table}.
+
+If units are necessary, please put them in the column labels when applicable. The label then turns into "Label [Unit]".
+
+Obviously other colors can also always be added in case they are needed (think trade off tables for example), but the top row should be gray in most cases.
+
+If two tables are to put next to each other, use \parbox{} and \scalebox{}. An example can be found below.
+
+\begin{table}
+\parbox{.45\textwidth}{
+    \centering
+    \caption{Caption table 1}
+    \scalebox{1}{
+    \begin{tabular}{}
+    [table 1]
+    \end{tabular}
+    }
+    \label{tab:label table 1}
+}
+\hfill
+\parbox{.45\textwidth}{
+    \centering
+    \caption{Caption table 2}
+    \scalebox{1}{
+    \begin{tabular}{}
+    [table 2]
+    \end{tabular}
+    }
+    \label{tab:label table 2}
+}
+\end{table}
+
+Note that in some cases, a different style can be used. Please think whether it's appropriate to change the style of a table when considering this. (The task distribution table can be different for example.)
+
+===================================================================================
+================================== 2.) EQUATIONS ==================================
+===================================================================================
+
+Please use \begin{equation} \end{equation} when making formulas so they can be referenced using \autoref{}. Use \left and \right for brackets so they scale properly. When multiplying, only use \cdot when it would not be clear if not used or between numbers and symbols, otherwise, just write out the numbers. An example of an equation can be found below.
+
+\begin{equation}
+    \label{eq:equation template}
+    a = 2\frac{b}{3 \cdot c}
+\end{equation}
+
+If an equation is not referenced in text, it most likely is not necessary and can be removed. If for whatever reason it does need to be there, make sure it does not get an equation number by using \begin{equation*} instead of \begin{equation}. The rest stays the same.
+
+
+===================================================================================
+=================================== 3.) FIGURES ===================================
+===================================================================================
+
+Add figures using \begin{figure} and \end{figure}. Caption should be below the figure, with the other conventions the same as for tables. Make sure the figure is a stand alone entity, and thus the caption explains the entire image. 
+
+
+==================================================================================
+=========================== 4.) REFERENCING AND CITING ===========================
+==================================================================================
+
+Citations can be done by adding the source to "report.bib" and then using \cite{}. Please always put a space before the command, and a period after if it is at the end of a sentence.
+
+Referencing is always done using \autoref{}. Autoref adds the type of reference (equation, chapter, table, etc.) so you don't have to write that before it. Please put into the label whether it is a figure, table, etc using the following convention:
+
+Chapter:                ch
+Section:                sec
+Subsection:             subsec
+Subsubsection:          subsubsec
+Appendix:               app
+Table:                  tab
+Figure:                 fig
+Files:                  file
+Equation:               eq
+Listing:                list
+
+So, labels are done the following way:
+
+\label{type:label name}
+
+Also please make the label names make sense in case other people need to reference a part you made. 
+
+
+==================================================================================
+================================= 5.) FILE NAMES =================================
+==================================================================================
+
+When uploading images or files, let them have a proper name so people can find what they need more easily. For chapter files (created in the mainmatter folder) and appendix files (created in the appendix folder), please use the following convention:
+
+Chapters:                CXX_Chapter name.tex
+Appendices:              AXX_Appendix name.tex
+
+Where XX is the number of the appendix or chapter (01 for chapter 1/appendix a, 02 for chapter 2/appendix b, etc.).
+
+When creating a new file, use the naming convention above and just copy over the text in the respective templates.
+
+
+===================================================================================
+==================================== 6.) OTHER ====================================
+===================================================================================
+
+When needing to input a pdf file, use \includepdf[]{}.
+
+When needing to scale a table, use \scalebox{} over the tabular.
+
+When needing to put two images side by side, use minipages when the images are separate and subfigures when the images correlate. Examples can be found below.
+
+\begin{figure}
+    \centering
+    \begin{minipage}{0.45\textwidth}
+       \centering
+       \includegraphics[]{image 1}
+       \caption{Caption image 1.}
+       \label{fig:label image 1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+       \centering
+       \includegraphics[]{image 2}
+       \caption{Caption image 2.}
+       \label{fig:label image 2}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[]{image 1}
+        \caption{Caption image 1}
+        \label{fig:label image 1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[]{image 2}
+        \caption{Caption image 2.}
+        \label{fig:label image 2}
+    \end{subfigure}
+    \caption{Caption entire system.}
+\end{figure}
+
+A subfigure has 3 captions, one per image and one for the entire system, and minipages have the two captions, one for each image. Think what is needed when choosing between these options.
