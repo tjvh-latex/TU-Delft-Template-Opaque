@@ -5,13 +5,15 @@
 % Rewritten template by Daan Zwaneveld (dzwaneveld.github.io). Original
 % template by TU Delft (https://www.tudelft.nl/huisstijl/downloads/).
 %
+% Rewritten again by Thomas van Haarst (github.com/tjvh-latex and github.com/TJVH0304).
+%
 % This template is available under CC BY-NC 4.0. For more information,
 % see https://creativecommons.org/licenses/by-nc/4.0/. No attribution
 % is required in reports created using this template.
 
 %% Class is based on the default book class and options will be passed
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{layout/tudelft-report}[16-05-2021 v1.4.1 TU Delft Report Class]
+\ProvidesClass{layout/tudelft-report}[12-03-2023 v2.0 TU Delft Report Class]
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 \ProcessOptions\relax
