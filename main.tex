@@ -64,8 +64,8 @@
 
 \definecolor{title}{HTML}{4884d6} % Color for the title
 \makecover
-\input{frontmatter/title}
-\input{frontmatter/summary}
+\input{frontmatter/FM0_Title}
+\input{frontmatter/FM1_Summary}
 \tableofcontents
 
 %% List of abbreviations, symbols, figures and tables
@@ -76,15 +76,16 @@
 % Generate the nomenclature
  \makenomenclature
   \renewcommand{\nomname}{List of Symbols}            % Rename to "List of Symbols"
- \input{frontmatter/nomenclature}
+ \input{frontmatter/FM2_Nomenclature}
  \printnomenclature                                  % Include to actually display
  \addcontentsline{toc}{chapter}{List of Symbols}    %Adds list of symbols to table of contents
 
 %% Arabic numerals
 \mainmatter
 % Add chapters below
+\input{frontmatter/FM3_Introduction}
 \input{mainmatter/ChapterTemplate}
-
+\input{frontmatter/FM4_Conclusion}
 
 %% Prevent urls running into margins in bibliography
 \setcounter{biburlnumpenalty}{7000}
@@ -100,6 +101,6 @@
 
 
 
-\input{appendix/A01_Task Distribution.tex}
+\input{appendix/A1_TaskDistribution}
 
 \end{document}
