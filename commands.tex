@@ -1,0 +1,87 @@
+% Shortcuts
+%% Our mission
+\newcommand{\HtoGO}{H\textsubscript{2}GO}
+\newcommand{\HtoERMES}{H\textsubscript{2}ERMES}
+
+%% Chemical formulas
+\newcommand{\LHtwo}{LH\textsubscript{2}}
+\newcommand{\GHtwo}{GH\textsubscript{2}}
+\newcommand{\LOX}{LOX}
+\newcommand{\COtwo}{CO\textsubscript{2}}
+\newcommand{\HtwoO}{H\textsubscript{2}O}
+\newcommand{\COx}{CO\textsubscript{x}}
+\newcommand{\NOx}{NO\textsubscript{x}}
+\newcommand{\HtwoOtwo}{H\textsubscript{2}O\textsubscript{2}}
+\newcommand{\CthreeHsix}{C\textsubscript{3}H\textsubscript{6}}
+\newcommand{\NtwoO}{N\textsubscript{2}O}
+\newcommand{\CHfour}{CH\textsubscript{4}}
+
+%% Other
+\newcommand{\Isp}{I\textsubscript{sp}}
+
+% Referencing
+\newcommand{\urlcite}[2]{\footnote{URL \url{#1} [cited #2]}}
+\newcommand{\reqref}[1]{\hyperref[#1]{\textcolor{cyan}{\textit{#1}}}}
+\newcommand{\riskref}[1]{\hyperref[#1]{\textcolor{cyan}{\textit{#1}}}}
+\newcommand{\riskrefblack}[1]{\hyperref[#1]{\textcolor{black}{\textit{#1}}}}
+\newcommand{\assref}[1]{\hyperref[#1]{\textcolor{cyan}{\textit{#1}}}}
+
+% Nomenclature
+\newcommand{\un}[2]{\ifstrempty{#2}{\SI[retain-explicit-plus = true]{#1}{}}{\SI[retain-explicit-plus = true]{#1}{[#2]}}}
+\DeclareSIUnit{\decibelisotropic}{dBi}
+
+\newcommand{\nom}[5]{\nomenclature[#1]{#2}{#3\nomunit{ \un{#4}{#5}}}}
+
+% todos
+\let\originaltodo\todo
+\newcommand{\majortodo}[1]{\originaltodo[color=magenta]{#1}}
+\newcommand{\personaltodo}[1]{\originaltodo[color=green!20]{#1}}
+% Uncomment this line if you want to hide all orange todos
+% \renewcommand{\todo}[1]{}
+
+
+% placeholders
+\newcommand{\placeholderfigure}[1]{
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.25\linewidth]{figures/cats/cat.png}
+    \caption{\textcolor{tudelft-pink}{\textbf{Gatito is waiting for #1}}}%This is a ballin cat (hard)}
+\end{figure}
+}
+
+\newcommand{\placeholderfigurenonenv}[1]{
+    \centering
+    \includegraphics[width=0.4\linewidth]{figures/cats/cat.png}
+    \caption{\textcolor{tudelft-pink}{\textbf{Gatito #1}}}
+}
+
+\newcommand{\gatito}[1]{\placeholderfigure{#1}}
+\newcommand{\gatitotwo}[1]{
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.25\linewidth]{figures/cats/images.jpg}
+    \caption{\textcolor{tudelft-pink}{\textbf{Gatito 2 is waiting for #1}}}
+\end{figure}
+}
+
+% Placeholder citation
+\newcommand{\tempcite}[1]{\textcolor{tudelft-pink}{[CITE: #1]}}
+
+% Compliance matrix commands
+\newcommand{\compliancetrue}{\textcolor{tudelft-green}{Compliant}}
+\newcommand{\compliancefalse}{\textcolor{tudelft-red}{Non-compliant}}
+\newcommand{\compliancenone}{\textcolor{tudelft-yellow}{Intend to Comply}}
+\newcommand{\sensitivityyes}{\textcolor{tudelft-red}{Sensitive}}
+\newcommand{\sensitivityNA}{\textcolor{tudelft-gray}{N/A}}
+\newcommand{\sensitivityno}{\textcolor{tudelft-green}{Insensitive}}
+
+% New requirements marking
+\newcommand{\marknewreq}{\tikz\draw[tudelft-green,fill=tudelft-green] (0,0) circle (.5ex);}
+\newcommand{\markchangedreq}{\tikz\draw[tudelft-yellow,fill=tudelft-yellow] (0,0) circle (.5ex);}
+\newcommand{\markoldreq}{\tikz\draw[tudelft-red,fill=tudelft-red] (0,0) circle (.5ex);}
+
+\newcommand{\alignnumber}{\refstepcounter{equation}\tag{\theequation}}
+
+\newcommand{\unfinished}[1]{\textcolor{tudelft-red}{\textbf{#1}}}
+
+\newcommand{\changelog}[1]{\todo[color=blue!20]{#1}}

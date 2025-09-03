@@ -9,7 +9,7 @@
 
 %% Print the subtitle
 {\makeatletter
-\ifdefvoid{\@subtitle}{}{\titlestyle\fontsize{20}{20}\selectfont\@subtitle}
+\ifdefvoid{\@subtitle}{}{\bigskip\titlestyle\fontsize{20}{20}\selectfont\@subtitle}
 \makeatother}
 
 \bigskip
@@ -30,22 +30,26 @@ by
 
 %% Print table with names and student numbers
 \setlength\extrarowheight{2pt}
-\begin{tabular}{lc}
-    Student Name & Student Number \\\hline
-    name 1 & number \\ 
-    name 2 & number \\
-    % etc
+\begin{tabular}{@{}llp{0mm}ll@{}}
+names & numbers \\
 \end{tabular}
 
 \vfill
 
 %% Print some more information at the bottom
 \begin{tabular}{ll}
-    Institution: & Delft University of Technology \\
-    Place: & Faculty of Aerospace Engineering, Delft \\
-    Version: & 1 \\
-    Date: & 
+    Date: &  \\
+    Version: & 1.0
 \end{tabular}
+
+% \begin{tabular}{
+% %p{15mm}p{10cm}
+% ll
+% }
+%     Cover: & Orbital Propellant Depot - NASA Marshall Space Flight Center \\
+%     % Feel free to remove the following attribution, it is not required - still appreciated :-)
+%     Style: & TU Delft Report adapted to DSE guidelines
+% \end{tabular}
 
 \end{center}
 

@@ -1,0 +1,364 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\chapter{Report Formatting}
+
+%\todo{I had to change the chapter title formatting cause my template had it different, if its wrong now please lmk -T}
+\textit{Temporary chapter to outline the structure of the report and also present a template for the report. All chapter introductions should be written like this. More detail about the structure is in \autoref{sec: temp-first}}. 
+
+\section{Sections}\label{sec: temp-first}
+This is the introduction to this section and here you should expand on what this section is about and what contents you will cover. You should always have more than one section in each chapter. If a chapter only has one section, consider removing that chapter and adding its contents to another chapter, or try adding more sections. Tables should be introduced before they occur in the report. If you have extremely long tables, such as the requirements and the risks, put them in a separate file in the \texttt{mainmatter/tables} folder and input them as it is then easier to go over the other \texttt{.tex} file.
+
+\subsection{Table formatting}
+The requirements are presented in \autoref{tab: Stakeholder-Requirements-formatting}.
+
+\begin{longtable}{lp{10.5cm}l}
+\caption{Stakeholder requirements}
+\label{tab: Stakeholder-Requirements-formatting}\\
+\toprule
+\textbf{Requirement ID} & \textbf{Requirement} & \textbf{Importance} \\
+\midrule
+\endfirsthead
+
+\multicolumn{3}{c}{\footnotesize{\textbf{\tablename\ \thetable\ } -- \textit{continued from previous page}}} \\
+\toprule
+\textbf{Requirement ID} & \textbf{Requirement} & \textbf{Importance} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{3}{c}{\footnotesize{\textit{continued on next page}}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+% COST REQUIREMENTS
+RI-SYS-12\label{RI-SYS-12} & The vehicle shall be developed with a total engineering budget not exceeding US\$1.54 billion through its first operational flight. & Driving \\
+
+RQ-STK-COS-23\label{RQ-STK-COS-23} & The operational cost per launch shall not exceed BOB 1 gazillion after its first -3 operational flights. & \\
+
+\end{longtable}
+
+Formatting of general tables is the same as in the previous reports, for which a template is in Notion (I think, otherwise just copy an existing table idc).
+
+\subsection{(Sub)Section Formatting}
+Use capitalization in chapter/section/subsection/... titles please, except for when you have connection words (like and or of). In case your [chapter/section/subsection] only has one [section/subsection/subsubsection], remove the latter, aka dont have something which only has a single subitem. Each subsection should have at least a paragraph. If it only has tables or graphs then you can probably get away with less words but would still be nice for consistency. 
+
+\subsubsection{Subsubsections}
+Subsubsections do not show up in the table of contents so consider that. Use subsubsections as headers in content instead of making bold text. If you want to reference a requirement or a risk then you can do it like this (on another page), which show up as \reqref{RQ-STK-COS-23} and \riskref{RI-SYS-12} (examples on how to use these commands can be found later where we explained all of our custom commands we made for your enjoyment).
+
+\subsection{This is another section about figures}
+Once again this is a section introduction, so do ur thing here. Naturally like tables, ideally you introduce a figure before it is presented in the report. However, captions should be below the figure. This a figure of a cat as seen in \autoref{fig: cat}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.25\linewidth]{figures/cats/cat.png}
+    \caption{Gatito}%This is a ballin cat (hard)}
+    \label{fig: cat}
+\end{figure}
+
+You can also add pictures next to each other using subfigures and they can each have their own label along with a common label referring to both images (wow). 
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{figures/cats/cat.png}
+  \caption{This is the same ballin cat (harder)}
+  % \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{figures/cats/images.jpg}
+  \caption{Different cat}
+  % \label{fig:sub2}
+\end{subfigure}
+\caption{A set of cats}
+% \label{fig:test}
+\end{figure}
+
+For placement, ideally use the \texttt{htbp} tag, but if we are crammed for pages just ball out and use no tag. The tag is the thing you put after \texttt{\textbackslash begin\{figure\}}, inside the \texttt{[]}.
+
+For uploading figures, ideally do not use raster graphics (png, jpg, tiff, etc.) but vector graphics (svg, ai, etc.). For adding these, export them wherever (say draw.io) as svg, and use inkscape to convert to pdf, OR ensure that the output pdf (if you directly export as pdf) does not have a metric fuckton of whitespace (this kinda fucked us a bit in the midterm with the concept sketches so), aka see that the output pdf is cropped to the figure size. If you don't know how to do this, just let me (Thomas) know, send your vector graphics and I'll convert it cause I have a nice command set up to convert it on my mac. Note that before we did directly include svg but I found out (shoutout Greg) that \LaTeX{} recompiles the figure from the source every time you compile the report which just slows down compilation, which is not the case when we use pdfs.
+
+\section{This section is about equations and numbers in general}
+Single equations should be in the align environment because you can align multiple equations at a certain point. 
+% \begin{minted}{latex}
+% \begin{align}
+%     F &= ma \\
+%     g_{0} &= 9.81 
+% \end{align}
+% \begin{center}
+% \textit{Symbols definition}
+% \end{center}
+% \end{minted}
+\begin{align}
+    F &= ma \label{eq: Newtons-law}\\
+    g_{0} &= 9.81 \label{eq: gravity} 
+\end{align}
+\begin{center}
+\textit{Here you should add what the symbols are so its independent of the text and then move on. F \un{}{\newton} is force, m \un{}{\kilogram} is the mass, a \un{}{\meter\per\second\squared} is the acceleration. You should also add the units here in square brackets, but more about that after equation stuff. ONLY PUT THE MEANINGS HERE IF ITS THE FIRST TIME THEY SHOW UP IN AN EQUATION}
+
+\end{center}
+And then if you want to add related equations you can use the align environment within subequations environment. 
+\begin{subequations}
+\begin{align}
+  a &= b + c \\
+  x &= y + z
+\end{align}
+\end{subequations}
+
+You can also add equations next to each other by using multicols like this. Ideally do this to make things more concise and save space, but if you have longer equations then use the subequations thing presented above. 
+\begin{multicols}{2}
+\begin{subequations}
+\begin{align}
+E = mc^2
+\end{align}
+
+\begin{align}
+F = ma
+\end{align}
+\end{subequations}
+\end{multicols}
+
+You can also then add multiple rows of equations;
+\begin{multicols}{2}
+\begin{align}
+E &= mc^2 \\
+y &= ax + b
+\end{align}
+
+\begin{align}
+F &= ma \\
+X &= y\frac{a}{b} + m
+\end{align}
+\end{multicols}
+
+Then you can naturally also refer to equations using autoref (ofc you have to label them first), like \autoref{eq: gravity}.
+
+Now moving on to numbers. All numbers in single digits should be text and not numeral. So it should be three and not 3. 10 and onwards should be numerals. There should be no separators used so write it as 123456 and not 123,456. When referring to values always write the unit in text in square brackets with a space before the units (this is alr done by the un command yay). So the mass our of second stage is \un{10000}{\kilogram} and we will produce three different version with the first one having 15 propellant tanks. Also, ideally every number has a unit, unless it really does not make sense. For the formatting, we have made a command to it is also easy to change all numbers at once if we think that's necessary, so make sure to look at the examples of commands below.
+
+\section{To Do's}
+
+If you want to get ppls attention and write todo notes then you can do this for general comments;
+%\todo{this makes zero sense - SK}
+This is just done as you know how:
+
+\begin{minted}{latex}
+    %\todo{whatever the fuck you want to say}
+\end{minted}
+
+However if something you see is very major and should be immediately addressed
+\majortodo{this still makes zero sense - SK}
+
+You can either set the color manually or use the beautiful custom command:
+
+\begin{minted}{latex}
+    \majortodo{whatever the major fuck you want to say}
+\end{minted}
+
+If you want to make a todo for yourself, to ensure that you don't forget to do something later, you can use:
+
+\begin{minted}{latex}
+    \personaltodo{i want to eat ice cream later}
+\end{minted}
+
+Showing up like:
+
+\personaltodo{Update these numbers once we have the final ones}
+
+These are meant to be safely ignored by people not writing that section, apart from maybe not adding a similar todo later.
+
+As we've discussed before, make sure to sign your todos so peeps can ask whatever the fuck you meant if u were on some delusional shit.
+
+If you dont want the todo to be inline, add the \texttt{noinline} tag:
+
+\begin{minted}{latex}
+    \todo[noinline]{this will not be inline -T}
+\end{minted}
+
+\section{Other random things}
+I will now list out other random things that we should keep in mind when writing stuff out. 
+\begin{enumerate}
+    \item Refer to Jyoti and peeps as "the client"
+    \item When referring to concepts, criterias, or simply other things where you are not using the word as a word; italicize the word. So like the mass calculations for \textit{Mass} are calculated using Diogos fourth law of DSE. 
+    \item Try to keep sentences and paragraphs as clean and to the point as possible. 
+    \item Avoid redundant sentences like "Firstly we will look at this photo of a cat in the first place"
+    \item Use the oxford comma
+    \item Numbers under ten should be spelled out
+    \item Use passive voice not active (e.g. "The result is calculated" instead of "we calculated the result")
+    \item No personal pronouns
+\end{enumerate}
+
+\section{Examples of custom commands}
+
+\subsection{Risk Referencing}
+Just add the risk id in the \{\}. Soham should have added all labels so it should work for any risk ID (as long as the risk actually exists), if not let Soham or Thomas know.
+
+\begin{minted}{latex}
+    \riskref{RI-SYS-1}
+\end{minted}
+
+results in: \riskref{RI-SYS-1}
+
+\subsection{Requirement Referencing}
+
+Similar to risks, just add the requirement id in the \{\}. Thomas added the labels for these, but again hit one of us up if it aint working.
+
+\begin{minted}{latex}
+    \reqref{RQ-STK-COS-2}
+\end{minted}
+
+results in: \reqref{RQ-STK-COS-2}
+
+\subsection{Nomenclature}
+
+To add shit to the nomenclature, use the following command in the file \texttt{frontmatter/FM2\_Nomenclature.tex}, so NOT wherever you defined it in text:
+
+\begin{minted}{latex}
+    \nom{Category}{Symbol}{Explanation}{Value}{Unit}
+\end{minted}
+
+For this:
+\begin{itemize}
+    \item \texttt{Category}: used for grouping in the nomenclature page. Choose between:
+    \begin{itemize}
+        \item[A -] Abbreviations
+        \item[R -] Roman symbols
+        \item[G -] Greek symbols
+        \item[C -] Constants
+        \item[S -] Subscripts
+        \item[O -] Other symbols
+    \end{itemize}
+    \item \texttt{Symbol}: just whatever nomenclature entry it is, e.g. TPS for thermal protection system, or $\rho$ for density
+    \item \texttt{Explanation}: What the symbol stands for
+    \item \texttt{Value}: In case of a constant, its value. If no value is needed (like for symbols or abbreviations), this field can be left empty, but do make sure to add the \{\}
+    \item \texttt{Unit}: The unit of the symbol. Again, if not needed, leave the \{\} empty
+\end{itemize}
+
+Note that this will just add it to the nomenclature chapter, so in your text you still have to do "this is bullshit (bs)" or whatever for abbreviations.
+
+\subsection{Numbers}
+
+When you need to add numbers in text, use the guidelines above. To easily do this, you can use the \texttt{\textbackslash{}un} command we made:
+
+\begin{minted}{latex}
+    \un{Value}{Unit}
+\end{minted}
+
+This is just a wrapper for the \texttt{\textbackslash{}SI} command for if you are familiar with that. In case of no unit, add a - instead of leaving it empty. Ideally for the unit, you use the versions that come with the \texttt{\textbackslash{}siunitx} package. this is pretty much just the name of the unit preceded by a slash. Some examples:
+
+\begin{itemize}
+    \item m: \texttt{\textbackslash{}meter}
+    \item W$^2$: \texttt{\textbackslash{}watt\textbackslash{}squared}
+    \item m/s: \texttt{\textbackslash{}meter\textbackslash{}per\textbackslash{}second}
+    \item K$^{-4}$: \texttt{\textbackslash{}per\textbackslash{}kelvin\textbackslash{}tothe\{4\}}
+\end{itemize}
+
+As an example, gravity shows up as: \un{9.80665}{\meter\per\second\squared}.
+
+If you dont know what command to use for your specific unit, either ask Thomas or look up the \texttt{siunitx} package documentation as that has a list.
+
+Note that you should always use this command for numbers in text so formatting is the same in the entire report. If you dont want the [] to show up for the unit (e.g. if you say I want to have \un{30}{} dogs later), simply leave the second set of \{\} empty and it wont be there. If a unit should be present, add a -.
+ 
+\subsection{Title Page}
+
+This is mainly if we are really crammed for pages again and want to combine the title and cover page (have our names in the shaded box bottom right corner of the cover), I added a custom option to the class. In the \texttt{main.tex} file, you can add \texttt{notitle} in the \texttt{[]} before \texttt{documentclass} to quickly do this. If we do want the separate pages, just leave it out and it will work. Note that the empty page after the cover has to be there according to DID-10, so that will always be there.
+
+\subsection{Abbreviation Commands}
+
+For things like \HtoGO{}, \HtoERMES{}, \COtwo{}, etc., please look in \texttt{commands.tex} for which are available. If it is not there, feel free to add it, but please stick to the naming convention used (e.g. do \texttt{HtwoO}, not \texttt{water}), so people dont have to look up every time what the command is again. Also, do NOT add a space at the end: instead, whenever you use the command, add \texttt{\{\}}. This will ensure proper spacing, but not fuck it up when you dont need a space. So, in \texttt{commands.tex}, do:
+
+\begin{minted}{latex}
+    \newcommand{\HtwoO}{H\textsubscript{2}O}
+\end{minted}
+
+And use it in your text as:
+
+\begin{minted}{latex}
+    Text \HtwoO{} yada yada (also \HtwoO{})
+\end{minted}
+
+This will show up as:
+
+Text \HtwoO{} yada yada (also \HtwoO{})
+
+If you did it the wrong way, aka as:
+
+\begin{minted}{latex}
+    \newcommand{\HtwoO}{H\textsubscript{2}O }
+\end{minted}
+
+(Notice the addition of the space after the O at the end), and use it like
+
+\begin{minted}{latex}
+    Text \HtwoO yada yada (also \HtwoO)
+\end{minted}
+
+It will show up like:
+
+\newcommand{\HtwoOspace}{H\textsubscript{2}O }
+
+Text \HtwoOspace yada yada (also \HtwoOspace)
+
+Which as you can see shits itself when you don't need a space after the command.
+
+Also, please actually use these commands and don't use \texttt{\$\_2\$} in \HtoGO{} for example, as formatting is actually different due to math vs text mode.
+
+\section{Note on Maximum Number of Pages}
+
+For your reference, I have made a custom command to display the amount of pages for each section based on the excel sheet Andreea made. This will show up at the beginning of your chapter or section as:
+
+\maxpages{X}
+
+You can keep this here, don't bother removing the \texttt{\textbackslash maxpages\{X\}} command. I made a custom option in the template so I can easily remove them all at once once we recompile. If you find them annoying and want to see the doc without it, go to \texttt{main.tex}, all the way to the top, and remove the \texttt{displaymaxpages} option in the \texttt{[]} before the \texttt{documentclass}. Please add it back though cause I think it's nicer to just have a quick sentence in my document rather than having to switch to the excel every time I'm writing a new section or took a break.
+
+Lastly, I have also made a thingy so that we will get an error if we are exceeding the page limit, but this is only set up for the entire document (so the 150 pages total).
+
+\section{Colors}
+
+As specified by Soham, we should use the TU Delft house style colors as much as possible when usign colors anywhere (as we also did for example in the trade-off tables in the midterm review slides). Below a list of all of the colors defined for this can be found, together with the color's name, so in a table you can just do something like \texttt{\textbackslash cellcolor\{colorname\}} with the name found below:
+
+\begin{itemize}
+    \item \colorbox{tudelft-cyan}{tudelft-cyan}, HTML Code 00FFFF
+    \item \colorbox{tudelft-black}{\textcolor{white}{tudelft-black}}, HTML code 000000
+    \item \colorbox{tudelft-white}{tudelft-white}, HTML Code FFFFFF (this is pure white so it probably wont show up)
+    \item \colorbox{tudelft-darkblue}{\textcolor{white}{tudelft-darkblue}}, HTML Code 0C2340
+    \item \colorbox{tudelft-turquoise}{tudelft-turquoise}, HTML Code 00B8C8
+    \item \colorbox{tudelft-royalblue}{tudelft-royalblue}, HTML Code 0076C2
+    \item \colorbox{tudelft-purple}{tudelft-purple}, HTML Code 6F1D77
+    \item \colorbox{tudelft-pink}{tudelft-pink}, HTML Code EF60A3
+    \item \colorbox{tudelft-bordeaux}{tudelft-bordeaux}, HTML Code A50034
+    \item \colorbox{tudelft-red}{tudelft-red}, HTML Code E03C31
+    \item \colorbox{tudelft-orange}{tudelft-orange}, HTML Code EC6842
+    \item \colorbox{tudelft-yellow}{tudelft-yellow}, HTML Code FFB81C
+    \item \colorbox{tudelft-green}{tudelft-green}, HTML Code 6CC24A
+    \item \colorbox{tudelft-forestgreen}{tudelft-forestgreen}, HTML Code 009B77
+    \item \colorbox{tudelft-darkgray}{tudelft-darkgray}, HTML Code 5C5C5C
+\end{itemize}
+
+Note that generally you should use the color name (\texttt{tudelft-whatever}) and not the HTML Code, but as I'm not sure about compatibility with certain things I've added them for a quick reference as well in case you need them.
+
+\section{Placeholders}
+When you have to add a figure somewhere in text, but you dont have the plot or table or whatever yet. Add a placeholder figure so 1. You dont forget because a the figure will be very noticeable and 2. It will help estimate the page count a bit better and 3. it is funny. 
+The command to add a this is simply;
+\begin{minted}{latex}
+    \placeholderfigure{add ur figure caption here or whatever}
+\end{minted}
+\placeholderfigure{placeholder figures}
+
+If you want to add a placeholder without the figure environment, so like putting it in a subfigure environment or something else you can use this;
+\begin{minted}{latex}
+    \placeholderfigurenoenv{add ur figure caption here or whatever}
+\end{minted}
+
+Naturally we also have gatito
+\gatito{}
+
+There is also a placeholder for citations;
+\begin{minted}{latex}
+    \tempcite{what ur citation is}
+\end{minted}
+\tempcite{NASA Handbook}
+
+
+
+\end{document}
